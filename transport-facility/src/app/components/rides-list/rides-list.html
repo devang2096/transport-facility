@@ -25,7 +25,7 @@
 
   <label style="display: block; margin-bottom: 8px">
     Your Employee ID (to book)
-    <input [(ngModel)]="myEmployeeId" placeholder="e.g. emp999" />
+    <input [(ngModel)]="myEmployeeId" [pattern]="employeeIdPattern" placeholder="e.g. emp999" />
   </label>
 
   <div *ngIf="rides.length === 0" class="small">No rides matching the current time window.</div>

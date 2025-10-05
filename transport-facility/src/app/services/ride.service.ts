@@ -62,12 +62,23 @@ export class RideService {
   }
 
   addRide(ride: Omit<Ride, 'id' | 'bookedBy'>): Ride {
+    const today = this.todayISO(new Date());
+
     // ensure employee hasn't already added a ride for today
     const exists = this.rides.find(r =>
       r.employeeId === ride.employeeId &&
       r.timeISO.slice(0, 10) === ride.timeISO.slice(0, 10)
     );
     if (exists) throw new Error('Employee already has a ride for today');
+
+    // ensure vehicle is not already added for a ride today
+    const vehicleExists = this.rides.find(
+      r =>
+        r.vehicleNo.toLowerCase() === ride.vehicleNo.toLowerCase() &&
+        r.timeISO.slice(0, 10) === today
+    );
+    if (vehicleExists)
+      throw new Error('This vehicle already has a ride scheduled for today');  
 
     const newRide: Ride = { ...ride, id: this.makeId(), bookedBy: [] };
     this.rides.push(newRide);

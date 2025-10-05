@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { Ride } from '../../models/ride.model';
 import { RideService } from '../../services/ride.service';
+import { RegexService } from '../../services/regex.service';
 
 @Component({
   selector: 'app-rides-list',
@@ -15,6 +16,7 @@ export class RidesList {
   bufferMinutes = 60;
   myEmployeeId = '';
   message = '';
+  employeeIdPattern = RegexService.employeeId;
 
   private sub: Subscription | null = null;
 
@@ -47,6 +49,7 @@ export class RidesList {
   book(rideId: string) {
     this.message = '';
     if (!this.myEmployeeId) { this.message = 'Please enter your Employee ID to book'; return; }
+    if(!this.employeeIdPattern.test(this.myEmployeeId)) { this.message = 'Please enter a valid Employee Id'; return; }
     try {
       this.rideService.bookRide(rideId, this.myEmployeeId.trim());
       this.message = 'Ride booked successfully';
