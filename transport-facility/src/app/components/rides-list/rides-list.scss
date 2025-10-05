@@ -30,6 +30,24 @@
     font-size: 24px;
     color: #333;
   }
+
+  .form-row {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    margin-bottom: 8px;
+  }
+  
+  .inline-label {
+    margin: 0;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+  }
+  
+  .small-input {
+    width: 80px;
+  }  
   
   input,
   select {

@@ -5,8 +5,8 @@
 
   <h2 class="form-title">Book Ride</h2>
 
-  <div style="display: flex; gap: 8px; align-items: center; margin-bottom: 8px">
-    <label style="margin: 0">
+  <div class="form-row">
+    <label class="inline-label">
       Vehicle:
       <select [(ngModel)]="vehicleFilter" (change)="onFilterChange()">
         <option value="">All</option>
@@ -14,12 +14,13 @@
         <option value="Bike">Bike</option>
       </select>
     </label>
-
-    <label style="margin: 0">
+  
+    <label class="inline-label">
       Buffer (mins):
-      <input type="number" [(ngModel)]="bufferMinutes" (change)="onFilterChange()" min="0" style="width: 80px" />
+      <input type="number" [(ngModel)]="bufferMinutes" (change)="onFilterChange()" min="0" class="small-input" />
     </label>
   </div>
+  
 
   <label style="display: block; margin-bottom: 8px">
     Your Employee ID (to book)
