@@ -1,0 +1,38 @@
+<form (ngSubmit)="submit()" [formGroup]="form" novalidate>
+    <label>Employee ID
+      <input formControlName="employeeId" placeholder="e.g. emp123" />
+    </label>
+  
+    <label>Vehicle Type
+      <select formControlName="vehicleType">
+        <option>Car</option>
+        <option>Bike</option>
+      </select>
+    </label>
+  
+    <label>Vehicle No
+      <input formControlName="vehicleNo" placeholder="e.g. KA01AB1234" />
+    </label>
+  
+    <label>Vacant Seats
+      <input type="number" formControlName="vacantSeats" min="1"/>
+    </label>
+  
+    <label>Time (HH:MM)
+      <input formControlName="time" placeholder="14:30" />
+    </label>
+  
+    <label>Pick-up Point
+      <input formControlName="pickupPoint" />
+    </label>
+  
+    <label>Destination
+      <input formControlName="destination" />
+    </label>
+  
+    <div style="margin-top:8px">
+      <button type="submit" class="primary">Add Ride</button>
+    </div>
+  
+    <div class="small" style="margin-top:8px">{{ message }}</div>
+  </form>  
