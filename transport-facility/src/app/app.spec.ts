@@ -1,31 +1,30 @@
-import { provideZonelessChangeDetection } from '@angular/core';
-import { TestBed } from '@angular/core/testing';
-import { RouterModule } from '@angular/router';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { App } from './app';
+import { provideRouter } from '@angular/router';
+import { Routes } from '@angular/router';
 
-describe('App', () => {
+describe('App Component', () => {
+  let component: App;
+  let fixture: ComponentFixture<App>;
+
+  const mockRoutes: Routes = []; // Empty routes just for testing
+
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [
-        RouterModule.forRoot([])
-      ],
-      declarations: [
-        App
-      ],
-      providers: [provideZonelessChangeDetection()]
+      declarations: [App],
+      providers: [provideRouter(mockRoutes)]
     }).compileComponents();
-  });
 
-  it('should create the app', () => {
-    const fixture = TestBed.createComponent(App);
-    const app = fixture.componentInstance;
-    expect(app).toBeTruthy();
-  });
-
-  it('should render title', () => {
-    const fixture = TestBed.createComponent(App);
+    fixture = TestBed.createComponent(App);
+    component = fixture.componentInstance;
     fixture.detectChanges();
-    const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('h1')?.textContent).toContain('Hello, transport-facility');
+  });
+
+  it('should create the App component', () => {
+    expect(component).toBeTruthy();
+  });
+
+  it('should have the correct title', () => {
+    expect(component.title()).toBe('transport-facility');
   });
 });

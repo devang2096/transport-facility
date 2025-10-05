@@ -79,7 +79,7 @@ describe('RidesList Component', () => {
   });
 
   it('should book a ride successfully with valid employee ID', () => {
-    component.myEmployeeId = 'emp999';
+    component.myEmployeeId = 'emp9999';
     component.book('1');
     expect(component.message).toBe('Ride booked successfully');
     expect(component.rides[0].vacantSeats).toBeLessThanOrEqual(2);

@@ -7,9 +7,5 @@ import { Component, signal } from '@angular/core';
   styleUrl: './app.scss'
 })
 export class App {
-  todayDate = new Date();
-  constructor() {
-    setInterval(() => this.todayDate = new Date(), 1000)
-  }
-  protected readonly title = signal('transport-facility');
+  public readonly title = signal('transport-facility');
 }
