@@ -1,4 +1,7 @@
 <div class="form-container">
+  <div class="back-arrow" (click)="goBack()" role="button" tabindex="0" aria-label="Back" title="Back">
+    ←
+  </div>
   <h2 class="form-title">Add Ride</h2>
 
   <form (ngSubmit)="submit()" [formGroup]="form" novalidate>

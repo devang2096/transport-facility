@@ -1,4 +1,8 @@
 <div class="form-container">
+  <div class="back-arrow" (click)="goBack()" role="button" tabindex="0" aria-label="Back" title="Back">
+    ←
+  </div>
+
   <h2 class="form-title">Book Ride</h2>
 
   <div style="display: flex; gap: 8px; align-items: center; margin-bottom: 8px">
@@ -13,13 +17,7 @@
 
     <label style="margin: 0">
       Buffer (mins):
-      <input
-        type="number"
-        [(ngModel)]="bufferMinutes"
-        (change)="onFilterChange()"
-        min="0"
-        style="width: 80px"
-      />
+      <input type="number" [(ngModel)]="bufferMinutes" (change)="onFilterChange()" min="0" style="width: 80px" />
     </label>
   </div>
 
@@ -30,20 +28,22 @@
 
   <div *ngIf="rides.length === 0" class="small">No rides matching the current time window.</div>
 
-  <div *ngFor="let r of rides" class="list-item">
-    <div>
+  <div class="rides-container">
+    <div *ngFor="let r of rides" class="list-item">
       <div>
-        <strong>{{ r.vehicleType }} — {{ r.vehicleNo }}</strong>
-        <span class="small">({{ r.vacantSeats }} seats)</span>
+        <div>
+          <strong>{{ r.vehicleType }} — {{ r.vehicleNo }}</strong>
+          <span class="small">({{ r.vacantSeats }} seats)</span>
+        </div>
+        <div class="small">
+          Pickup: {{ r.pickupPoint }} → {{ r.destination }} |
+          Time: {{ r.timeISO | date: 'shortTime' }}
+        </div>
+        <div class="small">Owner: {{ r.employeeId }}</div>
       </div>
-      <div class="small">
-        Pickup: {{ r.pickupPoint }} → {{ r.destination }} |
-        Time: {{ r.timeISO | date: 'shortTime' }}
+      <div>
+        <button (click)="book(r.id)" [disabled]="r.vacantSeats <= 0">Book</button>
       </div>
-      <div class="small">Owner: {{ r.employeeId }}</div>
-    </div>
-    <div>
-      <button (click)="book(r.id)" [disabled]="r.vacantSeats <= 0">Book</button>
     </div>
   </div>
 

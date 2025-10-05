@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { RideService } from '../../services/ride.service';
 import { RegexService } from '../../services/regex.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-add-ride',
@@ -13,7 +14,7 @@ export class AddRide {
   form!: FormGroup;
   message = '';
 
-  constructor(private _fb: FormBuilder, private _rideService: RideService) {
+  constructor(private _fb: FormBuilder, private _rideService: RideService, private _router: Router) {
     // Initialize the form inside constructor (after _fb is injected)
     this.form = this._fb.group({
       employeeId: ['', [Validators.required, Validators.pattern(RegexService.employeeId)]],
@@ -56,5 +57,9 @@ export class AddRide {
     } catch (e: any) {
       this.message = e?.message || 'Failed to add ride';
     }
+  }
+
+  goBack() {
+    this._router.navigate(['/']);
   }
 }

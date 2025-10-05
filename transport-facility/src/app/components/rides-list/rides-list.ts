@@ -3,6 +3,7 @@ import { Subscription } from 'rxjs';
 import { Ride } from '../../models/ride.model';
 import { RideService } from '../../services/ride.service';
 import { RegexService } from '../../services/regex.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-rides-list',
@@ -20,7 +21,7 @@ export class RidesList {
 
   private sub: Subscription | null = null;
 
-  constructor(private rideService: RideService) {}
+  constructor(private rideService: RideService, private _router: Router) {}
 
   ngOnInit() {
     // subscribe to today's rides
@@ -58,5 +59,9 @@ export class RidesList {
     } catch (err: any) {
       this.message = err?.message || 'Failed to book';
     }
+  }
+
+  goBack() {
+    this._router.navigate(['/']);
   }
 }

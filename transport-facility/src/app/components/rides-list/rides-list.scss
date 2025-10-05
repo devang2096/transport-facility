@@ -7,6 +7,22 @@
     border-radius: 8px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   }
+
+  .back-arrow {
+    cursor: pointer;
+    font-size: 24px;
+    user-select: none;
+    display: inline-block;
+    padding: 4px 8px;
+    color: #555;
+    transition: color 0.2s;
+  }
+  
+  .back-arrow:hover,
+  .back-arrow:focus {
+    color: #000;
+    outline: none;
+  }  
   
   .form-title {
     text-align: center;
@@ -38,6 +54,13 @@
     background-color: #ccc;
     cursor: not-allowed;
   }
+
+  .rides-container {
+    max-height: 400px;
+    overflow-y: auto;
+    margin-bottom: 16px;
+    padding-right: 8px;
+  }  
   
   .list-item {
     border: 1px solid #e0e0e0;
