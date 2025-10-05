@@ -56,6 +56,7 @@ export class AddRide {
       this.form.reset({ vehicleType: 'Car', vacantSeats: 1 });
     } catch (e: any) {
       this.message = e?.message || 'Failed to add ride';
+      throw new Error(this.message);
     }
   }
 
